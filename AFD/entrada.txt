@@ -1,0 +1,13 @@
+Inicio: {
+    Encabezado: {
+        TituloPagina: "Titulo ejemplo";
+    },
+    Cuerpo: [
+        Titulo: {
+            texto: "x somos chavos";
+            posicion: "centro";
+            color: "azul";
+            tamaño: "t2";
+        }
+    ]
+}
