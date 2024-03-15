@@ -4,9 +4,9 @@ Inicio: {
     },
     Cuerpo: [
         Titulo: {
-            texto: "x somos chavos";
             posicion: "centro";
             color: "azul";
+            texto: "x somos chavos";
             tamaño: "t2";
         }
     ]

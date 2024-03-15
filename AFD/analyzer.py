@@ -1,4 +1,5 @@
 from token import Token
+from error import Error
 
 class Analyzer():
     def __init__(self, text):
@@ -9,7 +10,7 @@ class Analyzer():
     def isValidSymbol(self, char):
         return char in [":", "{", "}", ";", ",", "[", "]"]
     
-    def state0(self, char):
+    def state0(self, char, line, column, lexema):
         if self.isValidSymbol(char):
             return 10
         elif char == '"':
@@ -20,8 +21,8 @@ class Analyzer():
             #Omitir espacios, tabulaciones y saltos de línea
             if ord(char) == 10 or ord(char) == 32 or ord(char) == 9:
                 pass
-            else:
-                pass # Es un error
+            else:# Es un error
+                self.errors.append(Error(lexema, char, "Léxico", line, column))
             return 0
 
     def analyze(self):
@@ -36,7 +37,7 @@ class Analyzer():
 
         for char in self.text:
             if state == 0:
-                state = self.state0(char)
+                state = self.state0(char, line, column, lexema)
                 if state == 0:
                     #Se reinicia el lexema
                     lexema = ""
@@ -60,8 +61,8 @@ class Analyzer():
                 elif char != "\n":
                     lexema += char
                     state = 1
-                else:
-                    pass # Es un error
+                else:#Error
+                    self.errors.append(Error(lexema, char, "Léxico", line, column))
 
                     #Se reinicia el lexema
                     lexema = ""
@@ -79,7 +80,7 @@ class Analyzer():
                     state = 0
 
                     #Actúa como si estuviera en el estado 0 de nuevo
-                    state = self.state0(char)
+                    state = self.state0(char, line, column, lexema)
                     if state == 0:
                         #Se reinicia el lexema
                         lexema = ""
@@ -96,7 +97,7 @@ class Analyzer():
                 
                 lexema = "" #Se limpia el lexema porque ya fue almacenado
 
-                state = self.state0(char)
+                state = self.state0(char, line, column, lexema)
                 if state == 0:
                     #Se reinicia el lexema
                     lexema = ""

@@ -8,8 +8,10 @@ if __name__ == "__main__":
     analyzer = Analyzer(text)
     analyzer.analyze()
 
-
+    print("====================== Tokens ======================")
     for token in analyzer.tokens:
         print(token)
+
+    print("===================== Errores ======================")
     for error in analyzer.errors:
         print(error)
