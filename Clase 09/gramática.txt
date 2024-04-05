@@ -1,0 +1,47 @@
+======================= Lenguaje =======================
+
+    Claves = [
+        "producto", "precio", "cantidad"
+    ]
+
+    Registros = [
+        { "manzana", 2.5, 15 }
+        { "melon", 5, 10 }
+    ]
+
+    imprimir("hola");
+    conteo();
+
+
+======================= Gramática =======================
+
+    Terminales: tk_claves, tk_registros, tk_imprimir, tk_conteo,
+                tk_igual, tk_corcheteA, tk_corcheteC, cadena, entero, decimal,
+                tk_parentesisA, tk_parentesisC, tk_PyC, tk_coma,
+                tk_llaveA, tk_llaveC, tk_palabraReservadaFuncion
+
+    No Terminales: <inicio>, <claves>, <registros>, <funciones>
+
+    Inicio: <inicio>
+
+    Producciones:
+        <inicio> ::= <claves> <registros> <funciones>
+
+        <claves> ::= tk_claves tk_igual tk_corcheteA tk_cadena <otra_cadena> tk_corcheteC
+        <otra_cadena> ::= tk_coma tk_cadena <otra_cadena>
+                        | epsilon
+
+        <registros> ::= tk_registros tk_igual tk_corcheteA <registro> <otro_registro> tk_corcheteC
+        <registro> ::= tk_llaveA <valor> <otro_valor> tk_llaveC
+        <valor> ::= tk_cadena
+                  | tk_entero
+                  | tk_decimal
+        <otro_valor> ::= tk_coma <valor>
+                       | epsilon
+        <otro_registro> ::= <registro> <otro_registro>
+                          | epsilon
+
+        <funciones> ::= <funcion> <otra_funcion>
+        <funcion> ::= tk_palabraReservadaFuncion tk_parentesisA <parametro> tk_parentesisC tk_PyC
+        <parametro> ::= <valor>
+                      | epsilon
