@@ -1,0 +1,29 @@
+=============================== Lenguaje ===============================
+
+{
+    ID: 1;
+    ER: "abc"*(8|20)?1;
+    CADENAS: "abc201", "81";
+},
+{
+    ID: 2;
+    ER: "cda"*(1|10)?1;
+    CADENAS: "abc201", "1";
+} 
+
+=============================== Gramática ===============================
+Terminales: tk_id, tk_entero, tk_PyC, tk_ER, tk_cadena, tk_decimal, tk_parA, tk_parC
+            tk_Mas, tk_asterisco, tk_coma, tk_interrogacion, tk_or
+
+No Terminales: <inicio>
+
+Inicio: <inicio>
+
+Producciones:
+    <inicio> ::= <elemento> <otro_elemento>
+
+    <elemento> ::= tk_llaveA <instruccionID> <instruccionER> <instruccionCadenas> tk_llaveC
+    <otro_elemento> ::= <elemento> <otro_elemnto>
+                     | epsilon
+
+    <instruccionID> ::= tk_id tk_dosPuntos tk_entero tk_PyC
