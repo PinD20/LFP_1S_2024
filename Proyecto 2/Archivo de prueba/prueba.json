@@ -1,0 +1,15 @@
+{
+    ID: 1;
+    ER: "abc"+;
+    CADENAS: "abcabcabc", "cba", "abc";
+},
+{
+    ID: 2;
+    ER: ("Estoy desesperaaado" | 90.5)? "0"+;
+    CADENAS: "Estoy desesperaaado0", "90.5";
+},
+{
+    ID: 3;
+    ER: "Facultad: " ( "Ingeniería" | "Arquitectura" );
+    CADENAS: "Facultad: Agronomía", "Facultad: Ingenieria", "Facultad: Arquitectura";
+},

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Salida</title>
+        </head>
+    <body>
+        <h1 style="text-align: center;">Resultados</h1>
+        <table border="1" style="text-align: center; margin: 0 auto;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Expresión Regular</th>
+                    <th>Cadena de Entrada</th>
+                    <th>Válida</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="3">1</td>
+                    <td rowspan="3">"abc"+</td>
+                    <td>"abcabcabc"</td>
+                    <td>Sí </td>
+                </tr>
+                <tr>
+                    <td>"cba"</td>
+                    <td>No </td>
+                </tr>
+                <tr>
+                    <td>"abc"</td>
+                    <td>Sí </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">2</td>
+                    <td rowspan="2">("Estoy desesperaaado" | 90.5)? "0"+</td>
+                    <td>"Estoy desesperaaado0"</td>
+                    <td>Sí </td>
+                </tr>
+                <tr>
+                    <td>"90.5"</td>
+                    <td>No </td>
+                </tr>
+
+                <tr>
+                    <td rowspan="3">3</td>
+                    <td rowspan="3">"Facultad: " ( "Ingeniería" | "Arquitectura" )</td>
+                    <td>"Facultad: Agronomía"</td>
+                    <td>No </td>
+                </tr>
+                <tr>
+                    <td>"Facultad: Ingenieria"</td>
+                    <td>No </td>
+                </tr>
+                <tr>
+                    <td>"Facultad: Arquitectura"</td>
+                    <td>Sí </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>
