@@ -23,7 +23,33 @@ Producciones:
     <inicio> ::= <elemento> <otro_elemento>
 
     <elemento> ::= tk_llaveA <instruccionID> <instruccionER> <instruccionCadenas> tk_llaveC
-    <otro_elemento> ::= <elemento> <otro_elemnto>
+    <otro_elemento> ::= tk_coma <elemento> <otro_elemento>
                      | epsilon
 
     <instruccionID> ::= tk_id tk_dosPuntos tk_entero tk_PyC
+
+
+    <instruccionER> ::= tk_ER tk_dosPuntos <expresion> <otraExpresion> tk_PyC
+
+    <expresion> ::= parA <expresion> parC <operador>
+                  | <elementoER> <operador>
+
+    <otraExpresion> ::= <expresion> <otraExpresion>
+                      | epsilon
+    
+    <operador> ::= <operadorUnario>
+                 | tk_Or <expresion>
+                 | epsilon
+
+    <operadorUnario> ::= tk_Mas
+                       | tk_Asterisco
+                       | tk_interrogacion
+
+    <elementoER> ::= tk_cadena
+                   | tk_entero
+                   | tk_decimal
+
+    <instruccionCadenas> ::= tk_Cadenas tk_dosPuntos tk_cadena <otraCadena> tk_PyC
+
+    <otraCadena> ::= tk_coma tk_Cadena <otraCadena>
+                   | epsilon
