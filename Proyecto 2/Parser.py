@@ -1,5 +1,40 @@
 from Token import Token
 
+#Implementación en código de comentario multilínea
+'''
+if estado == 0:
+    if char == "'":
+        estado = 1
+    #Demás casos
+
+elif estado == 1:
+    if char == "'":
+        estado = 2
+elif estado == 2:
+    if char == "'":
+        estado = 3
+
+elif estado == 3:
+    if char == "'":
+        estado = 4
+    else:
+        pass
+
+elif estado == 4:
+    if char == "'":
+        estado = 5
+    else:
+        estado = 3
+
+elif estado = 5:
+    if char == "'":
+        #Termina el comentario
+        estado = 0
+    else:
+        estado = 3
+
+'''
+
 class Parser():
     def __init__(self, tokens) -> None:
         self.tokens = tokens
@@ -8,6 +43,11 @@ class Parser():
         self.tokens.append(Token("EOF", "EOF", -1, -1))
         #End of file = EOF
 
+    def recuperar(self, nombreTokenSincronizacion):
+        while self.tokens[0].name != "EOF":
+            tk = self.tokens.pop(0)
+            if tk.name == nombreTokenSincronizacion:
+                break
 
     def parse(self):
         self.inicio()
@@ -31,8 +71,10 @@ class Parser():
                 self.tokens.pop(0)
             else:
                 print("error, Se esperaba una llave de cierre")
+                self.recuperar("tk_llaveC")
         else:
             print("Error, se esperaba una llave de apertura")
+            self.recuperar("tk_llaveA")
 
     # <otro_elemento> ::= tk_coma <elemento> <otro_elemento>
     #                  | epsilon
@@ -58,10 +100,13 @@ class Parser():
                         print("Error, se esperaba ';'")
                 else:
                     print("Error, se esperaba un entero")
+                    self.recuperar("tk_PyC")
             else:
                 print("Error, se esperaba ':'")
+                self.recuperar("tk_PyC")
         else:
             print("Error, se esperaba la palabra reservada 'ID'")
+            self.recuperar("tk_PyC")
 
     #<instruccionER> ::= tk_ER tk_dosPuntos <expresion> <otraExpresion> tk_PyC
     def instruccionER(self):
